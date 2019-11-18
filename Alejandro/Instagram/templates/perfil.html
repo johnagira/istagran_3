@@ -1,0 +1,37 @@
+{% load static %}
+{% include "includes/header.html" %}
+		{% include "includes/navbar.html" %}
+		
+		<div class="row" style="width: 100%">
+			<div class="col-md-10 offset-md-1">
+				<div class="row text-center">
+					{% for usuario in usuarios %}
+						<div class="col-md-12" style="padding: 5px;">
+							<h3>
+								<b>{{ usuario.username }}</b>
+								{% if usuario.id == request.session.user_id %}
+									<a href="#" class="btn" style="color: #000000">Subir Publicaci&oacute;n</a>
+									<a href="#" class="btn" style="color: #000000">Editar Perfil</a>
+								{% else %}
+									{% if siguiendo == '' %}
+										<a href="#" class="btn btn-sm btn-light" style="margin-left: 10px;">Seguir</a>
+									{% else %}
+										<a href="#" class="btn btn-sm btn-danger" style="margin-left: 10px;">Dejar de seguir</a>
+									{% endif %}
+								{% endif %}
+							</h3>
+							<b>{{ total_publicaciones }}</b> Publicaciones, <b>{{ total_seguidores }}</b> Seguidores, <b>{{ total_seguidos }}</b> Seguidos<br><br>
+						</div>
+					{% endfor %}
+					
+					{% for publicacion in publicaciones %}
+						<div class="col-md-4" style="padding: 5px;">
+							<img src="{{ publicacion.imagen }}" width="356" height="auto">
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+		
+	</body>
+</html>

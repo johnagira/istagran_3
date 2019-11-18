@@ -4,18 +4,21 @@ class User(models.Model):
     username = models.CharField(max_length=255)
     password = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
-    telefono = models.CharField(max_length=255)
+    telefono = models.CharField(max_length=255, null=True)
     nombre = models.CharField(max_length=255)
-    imagen = models.ImageField(upload_to='app/usuarios/', blank=True, null=True)
+    imagen = models.ImageField(upload_to='static/images/usuarios/', blank=True, null=True)
+    fecha = models.DateTimeField(auto_now_add=True)
     
 class Historia(models.Model):
     id_usuario = models.ForeignKey(User, on_delete=models.CASCADE)
-    imagen = models.ImageField(upload_to='app/historias/', blank=True, null=True)
-    fecha_publicacion = models.DateTimeField(auto_now_add=True)
+    imagen = models.ImageField(upload_to='static/images/historias/', blank=True, null=True)
+    fecha = models.DateTimeField(auto_now_add=True)
 
 class Pub(models.Model):
     id_usuario = models.ForeignKey(User, on_delete=models.CASCADE)
-    imagen = models.ImageField(upload_to='app/publicaciones/', blank=True, null=True)
+    imagen = models.ImageField(upload_to='static/images/publicaciones/', blank=True, null=True)
+    mensaje = models.TextField()
+    fecha = models.DateTimeField(auto_now_add=True)
     
 class PubComentario(models.Model):
     id_publicacion = models.ForeignKey(Pub, on_delete=models.CASCADE)

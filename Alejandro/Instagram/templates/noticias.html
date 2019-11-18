@@ -2,5 +2,32 @@
 {% include "includes/header.html" %}
 		{% include "includes/navbar.html" %}
 		
+		<div class="row" style="width: 100%">
+			<div class="col-md-4 offset-md-4">
+				{% for publicacion in publicaciones %}
+					{% if publicacion.id_usuario.id == seguidores.id_usuario_seguido.id or publicacion.id_usuario.id == request.session.user_id %}
+						<div style="border: solid 1px #DCDCDC; border-radius: 40px 10px;">
+							<div style="padding: 20px;"><b>{{ publicacion.id_usuario.nombre }}</b></div>
+							<img src="{{ publicacion.imagen }}" width="403" height="auto">
+							
+							<div style="padding: 10px;">
+								<span>{{ publicacion.mensaje }}</span><br>
+							</div>
+							<div style="padding: 8px;">
+								<span><i class="far fa-heart" style="font-size: 1.5rem;"></i></span>
+								<span style="padding-left: 5px;"><i class="far fa-comment-alt" style="font-size: 1.4rem;"></i></span>
+								<span class="float-right"><i class="far fa-bookmark" style="font-size: 1.5rem;"></i></i></span><br/>
+								
+								<span style="font-size: 13px;">
+									Le han dado gusta 12 Veces.<br>
+									{{ publicacion.fecha }}
+								</span>
+							</div>
+						</div><br>
+					{% endif %}
+				{% endfor %}
+			</div>
+		</div>
+		
 	</body>
 </html>

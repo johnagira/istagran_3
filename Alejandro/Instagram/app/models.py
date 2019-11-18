@@ -29,10 +29,6 @@ class PubLike(models.Model):
     id_publicacion = models.ForeignKey(Pub, on_delete=models.CASCADE)
     id_usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     
-class PubSave(models.Model): 
-    id_publicacion = models.ForeignKey(Pub, on_delete=models.CASCADE)
-    id_usuario = models.ForeignKey(User, on_delete=models.CASCADE)
-    
 class Follow(models.Model):
     id_usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name='id_usuario')
     id_usuario_seguido = models.ForeignKey(User, on_delete=models.CASCADE, related_name='id_usuario_seguido')
